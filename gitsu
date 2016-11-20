@@ -1,0 +1,10 @@
+#!/bin/bash	
+sudo chown -R ubuntu ./*
+sudo chown -R ubuntu .*
+sudo chown -R ubuntu *
+gall "quick commit switch users"
+sudo chown -R rstudio ./*
+sudo chown -R rstudio .*
+sudo chown -R rstudio *
+
+
