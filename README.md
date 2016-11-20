@@ -24,9 +24,9 @@ To install ShinyBuilder, download and install [R](http://www.r-project.org/).  T
 ```r
 if (!require("devtools"))
   install.packages("devtools")
-devtools::install_github("mul118/shinyMCE")
-devtools::install_github("mul118/shinyGridster")
-devtools::install_github("iheartradio/ShinyBuilder")
+devtools::install_github("mikemorris89/shinyMCE")
+devtools::install_github("mikemorris89/shinyGridster")
+devtools::install_github("mikemorris89/ShinyBuilder")
 ```
 
 If all goes well, you should now be able to run ShinyBuilder locally by typing:
