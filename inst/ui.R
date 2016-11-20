@@ -11,7 +11,12 @@ shinyUI(fluidPage(
   includeScript(str_c(sb_dir, 'www/json2.js')),
   tags$head(tags$script(src = "//www.google.com/jsapi")),
   includeScript(str_c(sb_dir, 'www/googleChart_init.js')),
-
+  # tags$head(tags$script(src = "www/tinymce.min.js")),
+  # tags$head(tags$script(src = 'www/shiny-tinymce-bindings.js')),
+  # includeScript(str_c(sb_dir, 'www/shiny-gridster-bindings.js')), 
+  # includeScript(str_c(sb_dir, 'www/json2.js')),
+  # tags$head(tags$script(src = "www/jsapi")),
+  # includeScript(str_c(sb_dir, 'www/googleChart_init.js')),
   #Navbar
   div(class="navbar navbar-static-top navbar", 
       div(class = 'navbar-inner',

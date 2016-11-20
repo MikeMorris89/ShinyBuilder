@@ -1,21 +1,21 @@
 str(db_list$`SQLite sample database`$db)
 
-
-
+#getwd()
+#setwd('/home/rstudio/ShinyApps/ShinyBuilder')
 dbListInit <- function(){
   sb_dir <- system.file(package = 'ShinyBuilder')
-  load(file = 'C:/Github/ShinyBuilder/inst/data/db_list-orig.RData')
+  load(file = '/home/rstudio/ShinyApps/ShinyBuilder/inst/data/db_list-orig.RData')
   lapply(db_list, function(x){x$db <- eval(x$db); x})
 }
 db_list <- dbListInit()
 
 dbListAdd <- function(db_name, db, query_fn, default_query){
-  load(file = 'C:/Github/ShinyBuilder/inst/data/db_list.RData')
+  load(file = '/home/rstudio/ShinyApps/ShinyBuilder/inst/data/db_list.RData')
   db_list[[db_name]] <- list(
     db = db,
     query_fn = query_fn,
     default_query = default_query)
-  save(db_list, file = 'C:/Github/ShinyBuilder/inst/data/db_list.RData')
+  save(db_list, file = '/home/rstudio/ShinyApps/ShinyBuilder/inst/data/db_list.RData')
 }
 
 

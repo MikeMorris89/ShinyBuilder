@@ -5,11 +5,17 @@
 shinyUI(fluidPage(
   
   #Includes
-  tags$head(tags$script(src = "//tinymce.cachefly.net/4.0/tinymce.min.js")),
-  tags$head(tags$script(src = 'shinyMCE/shiny-tinymce-bindings.js')),
+  # tags$head(tags$script(src = "//tinymce.cachefly.net/4.0/tinymce.min.js")),
+  # tags$head(tags$script(src = 'shinyMCE/shiny-tinymce-bindings.js')),
+  # includeScript(str_c(sb_dir, 'www/shiny-gridster-bindings.js')), 
+  # includeScript(str_c(sb_dir, 'www/json2.js')),
+  # tags$head(tags$script(src = "//www.google.com/jsapi")),
+  # includeScript(str_c(sb_dir, 'www/googleChart_init.js')),
+  tags$head(tags$script(src = "www/tinymce.min.js")),
+  tags$head(tags$script(src = 'www/shiny-tinymce-bindings.js')),
   includeScript(str_c(sb_dir, 'www/shiny-gridster-bindings.js')), 
   includeScript(str_c(sb_dir, 'www/json2.js')),
-  tags$head(tags$script(src = "//www.google.com/jsapi")),
+  tags$head(tags$script(src = "www/jsapi")),
   includeScript(str_c(sb_dir, 'www/googleChart_init.js')),
 
   #Navbar

@@ -7,6 +7,7 @@
 #---------
 library(stringr)
 library(googleVis)
+library(shinyGoogleCharts)
 #library(RJDBC)
 library(RJSONIO)
 library(RSQLite)
