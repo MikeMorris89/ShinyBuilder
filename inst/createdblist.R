@@ -1,4 +1,6 @@
-str(db_list$`SQLite sample database`$db)
+str(db_list$SQLite$db)
+
+head(db_list)
 
 #getwd()
 #setwd('/home/rstudio/ShinyApps/ShinyBuilder')
