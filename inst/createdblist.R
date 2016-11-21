@@ -1,3 +1,25 @@
+version 
+
+remove.packages('shiny')
+remove.packages('devtools')
+install.packages('devtools',dep=T)
+install.packages('shiny',dep=T)
+install.packages('stringr',dep=T)
+install.packages('googleVis',dep=T)
+install.packages('shinyGoogleCharts',dep=T)
+install.packages('rJava',dep=T)
+install.packages('RJDBC',dep=T)
+install.packages('RJSONIO',dep=T)
+install.packages('RSQLite',dep=T)
+install.packages('shinyAce',dep=T)
+
+remove.packages('ShinyBuilder')
+
+devtools::install_github("mikemorris89/shinyMCE")
+devtools::install_github("shinyGoogleCharts", "mul118")
+devtools::install_github("mikemorris89/shinyGridster")
+devtools::install_github("mikemorris89/ShinyBuilder")
+
 str(db_list$SQLite$db)
 
 head(db_list)
