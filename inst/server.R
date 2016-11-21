@@ -36,7 +36,7 @@ shinyServer(function(input, output, session) {
   save_changes_val      <- 0
   
   #Determine Available dashboards
-  available_dashboards  <- reactive({invalidateLater(1000*30, session); str_replace(list.files(str_c(sb_dir, 'dashboards/')), '.RData', '')})
+  available_dashboards  <- reactive({invalidateLater(1000*30, session); str_replace(list.files(file.path(sb_dir, 'dashboards/')), '.RData', '')})
   
   #Determine selected dashboard from url
   selected_dashboard <- reactive({
@@ -59,7 +59,7 @@ shinyServer(function(input, output, session) {
   observe({
     if(input$delete_dash_btn > 0){
       if(isolate(selected_dashboard()) != default_dashboard){
-        file.remove(str_c(sb_dir, 'dashboards/', isolate(selected_dashboard()),'.RData')) 
+        file.remove(file.path(sb_dir, 'dashboards/', isolate(selected_dashboard()),'.RData')) 
         session$sendCustomMessage(type = "shiny.go_to_url", list(url = default_dashboard))
       }
     }
@@ -135,10 +135,16 @@ shinyServer(function(input, output, session) {
   #Add Chart Widget Function
   chartWidget <- function (chart_id, chart_type, chart_opts){ 
     isolate({
-    charteditor_id <- str_c(chart_id, '_editor')
+    charteditor_id <- file.path(chart_id, '_editor')
     
     #Query Editor Button
-    edit_qry_btn    <- tags$div(class="qry btn", 'style'="display:inline;", 'data-toggle'="modal", 'data-target'="#full-width", 'chart-id'= chart_id, title = 'Edit Query', icon('pencil-square-o'),'Query')
+    edit_qry_btn    <- tags$div(class="qry btn"
+                                , 'style'="display:inline;"
+                                , 'data-toggle'="modal"
+                                , 'data-target'="#full-width"
+                                , 'chart-id'= chart_id
+                                , title = 'Edit Query'
+                                , icon('pencil-square-o'),'Query')
     
     #Chart
     output[[chart_id]] <- renderGoogleChart({ 
@@ -149,7 +155,7 @@ shinyServer(function(input, output, session) {
     })
     
     #Widget content
-    widget_id   <- str_c('w_', chart_id)
+    widget_id   <- file.path('w_', chart_id)
     widget_html <- paste0(tags$li(
       class = 'new',
       id = widget_id, 
@@ -169,7 +175,7 @@ shinyServer(function(input, output, session) {
     widget_counts$num_charts <- isolate(widget_counts$num_charts) + 1
     num_charts <- isolate(widget_counts$num_charts)  
     
-      chart_id                  <- str_c('gItemPlot', num_charts)
+      chart_id                  <- file.path('gItemPlot', num_charts)
       input_dbs[[chart_id]]     <- default_db_name
       input_queries[[chart_id]] <- default_query
       input_data[[chart_id]]    <- default_data
@@ -188,11 +194,11 @@ shinyServer(function(input, output, session) {
     if(input$addText > 0){  
       widget_counts$num_textareas <- isolate(widget_counts$num_textareas) + 1
       num_textareas     <- isolate(widget_counts$num_textareas)
-      #print(str_c('Num text areas: ', num_textareas))
+      #print(file.path('Num text areas: ', num_textareas))
       
       if(num_textareas > 0){
-        textarea_id     <- str_c('textArea', num_textareas)
-        widget_id       <- str_c('w_', textarea_id)
+        textarea_id     <- file.path('textArea', num_textareas)
+        widget_id       <- file.path('w_', textarea_id)
         text_area_tmpl  <- tinyMCE(textarea_id, 'Click to edit text.', inline_opts)
         widget_html     <- paste0(tags$li(class = 'new', id = widget_id, remove_btn, p('.', style = 'color: transparent'), text_area_tmpl))
         
@@ -217,7 +223,7 @@ shinyServer(function(input, output, session) {
           widget_id <- dashboard_state[[i]]$id
           if(str_detect(widget_id, 'gItemPlot')){
             chart_id                          <- str_replace(widget_id, 'w_','')
-            charteditor_id                    <- str_c(chart_id,'_editor')
+            charteditor_id                    <- file.path(chart_id,'_editor')
             dashboard_state[[i]]$db_name      <- input_dbs[[chart_id]]
             dashboard_state[[i]]$query        <- input_queries[[chart_id]]
             dashboard_state[[i]]$data         <- input_data[[chart_id]]
@@ -234,7 +240,7 @@ shinyServer(function(input, output, session) {
           }  
         }
         #Save dashboard state
-        save(list = c('dashboard_state'), file = str_c(sb_dir, 'dashboards/', dashboard_title, '.RData'))
+        save(list = c('dashboard_state'), file = file.path(sb_dir, 'dashboards/', dashboard_title, '.RData'))
         #print('====Saved Object===='); print(dashboard_state)
       })
     }
@@ -248,7 +254,7 @@ shinyServer(function(input, output, session) {
     if(input$save_as_dash_btn > 0) {
       dashboard_title <- isolate(input$save_as_file_name)
       saveDashBoard(dashboard_title)
-      new_available_dashboards  <- str_replace(list.files(str_c(sb_dir, 'dashboards/')), '.RData', '')
+      new_available_dashboards  <- str_replace(list.files(file.path(sb_dir, 'dashboards/')), '.RData', '')
       selected_dashboard        <- dashboard_title
       updateSelectInput(session, 'sel_dashboard', choices = new_available_dashboards, selected = dashboard_title) 
     }
@@ -257,8 +263,8 @@ shinyServer(function(input, output, session) {
   observe({  
     if(input$new_dash_btn > 0) {
       dashboard_title           <- isolate(input$new_dash_file_name)
-      file.copy(str_c(sb_dir, 'data/empty_dash.RData'), str_c(sb_dir, 'dashboards/', dashboard_title, '.RData'))
-      new_available_dashboards  <- str_replace(list.files(str_c(sb_dir, 'dashboards/')), '.RData', '')
+      file.copy(file.path(sb_dir, 'data/empty_dash.RData'), file.path(sb_dir, 'dashboards/', dashboard_title, '.RData'))
+      new_available_dashboards  <- str_replace(list.files(file.path(sb_dir, 'dashboards/')), '.RData', '')
       selected_dashboard        <- dashboard_title
       updateSelectInput(session, 'sel_dashboard', choices = new_available_dashboards, selected = dashboard_title) 
     }
@@ -276,8 +282,8 @@ shinyServer(function(input, output, session) {
           if(str_detect(dashboard_state[[i]]$id, 'gItemPlot')){
             widget_counts$num_charts <- isolate(widget_counts$num_charts) + 1
             num_charts      <- isolate(widget_counts$num_charts)
-            chart_id        <- str_c('gItemPlot', num_charts)
-            widget_id       <- str_c('w_', chart_id)
+            chart_id        <- file.path('gItemPlot', num_charts)
+            widget_id       <- file.path('w_', chart_id)
             
             chart_type                <- dashboard_state[[i]]$chart_type
             chart_opts                <- dashboard_state[[i]]$chart_opts
@@ -290,8 +296,8 @@ shinyServer(function(input, output, session) {
           else if(str_detect(dashboard_state[[i]]$id, 'textArea')){
             widget_counts$num_textareas <- isolate(widget_counts$num_textareas) + 1
             num_textareas   <- isolate(widget_counts$num_textareas)
-            textarea_id     <- str_c('textArea', num_textareas)
-            widget_id       <- str_c('w_', textarea_id)
+            textarea_id     <- file.path('textArea', num_textareas)
+            widget_id       <- file.path('w_', textarea_id)
             
             widget_content  <- tinyMCE(textarea_id, HTML(dashboard_state[[i]]$content), inline_opts)
             widget_html     <- paste0(tags$li(class = 'new', id = widget_id, remove_btn, p('.', style = 'color: transparent'), widget_content))     

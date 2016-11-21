@@ -1,5 +1,5 @@
 version 
-
+options(verbose = T)
 remove.packages('shiny')
 remove.packages('devtools')
 install.packages('devtools',dep=T)
