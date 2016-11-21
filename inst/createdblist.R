@@ -1,9 +1,12 @@
 version 
 options(verbose = T)
+options(shiny.trace=TRUE)
 remove.packages('shiny')
 remove.packages('devtools')
 install.packages('devtools',dep=T)
-install.packages('shiny',dep=T)
+install.packages('shiny',dep=T,)
+packageurl <- "https://cran.r-project.org/src/contrib/Archive/shiny/shiny_0.13.1.tar.gz"
+install.packages(packageurl, repos=NULL, type="source")
 install.packages('stringr',dep=T)
 install.packages('googleVis',dep=T)
 install.packages('shinyGoogleCharts',dep=T)
@@ -12,6 +15,7 @@ install.packages('RJDBC',dep=T)
 install.packages('RJSONIO',dep=T)
 install.packages('RSQLite',dep=T)
 install.packages('shinyAce',dep=T)
+install.packages("shinyjs",dep=T)
 
 remove.packages('ShinyBuilder')
 

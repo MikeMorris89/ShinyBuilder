@@ -7,18 +7,18 @@ shinyUI(fluidPage(
   #Includes
    tags$head(tags$script(src = "http://tinymce.cachefly.net/4.0/tinymce.min.js")),
    tags$head(tags$script(src = 'shinyMCE/shiny-tinymce-bindings.js')),
-   includeScript(file.path(sb_dir, 'www/shiny-gridster-bindings.js')), 
-   includeScript(file.path(sb_dir, 'www/json2.js')),
+   includeScript(str_c(sb_dir, 'www/shiny-gridster-bindings.js')), 
+   includeScript(str_c(sb_dir, 'www/json2.js')),
    tags$head(tags$script(src = 'https://www.gstatic.com/charts/loader.js')),
    tags$head(tags$script(src = "http://www.google.com/jsapi")),
-   includeScript(file.path(sb_dir, 'www/googleChart_init.js')),
+   includeScript(str_c(sb_dir, 'www/googleChart_init.js')),
   
-   #includeScript(file.path(sb_dir, "www/tinymce.min.js")),
-   # includeScript(file.path(sb_dir, 'www/shiny-tinymce-bindings.js')),
-   # includeScript(file.path(sb_dir, 'www/shiny-gridster-bindings.js')), 
-   # includeScript(file.path(sb_dir, 'www/json2.js')),
-   # includeScript(file.path(sb_dir, "www/jsapi")),
-   # includeScript(file.path(sb_dir, 'www/googleChart_init.js')),
+   #includeScript(str_c(sb_dir, "www/tinymce.min.js")),
+   # includeScript(str_c(sb_dir, 'www/shiny-tinymce-bindings.js')),
+   # includeScript(str_c(sb_dir, 'www/shiny-gridster-bindings.js')), 
+   # includeScript(str_c(sb_dir, 'www/json2.js')),
+   # includeScript(str_c(sb_dir, "www/jsapi")),
+   # includeScript(str_c(sb_dir, 'www/googleChart_init.js')),
   #Navbar
   div(class="navbar navbar-static-top navbar", 
       div(class = 'navbar-inner',
@@ -127,5 +127,5 @@ shinyUI(fluidPage(
   p('powered by iHR DataScience', align = 'left'),    
   
   #Main Stylesheet
-  includeCSS(file.path(sb_dir, '/www/main.css'))
+  includeCSS(str_c(sb_dir, '/www/main.css'))
 ))

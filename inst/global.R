@@ -5,6 +5,7 @@
 #---------
 #Libraries
 #---------
+library(shiny)
 library(stringr)
 library(googleVis)
 library(shinyGoogleCharts)
