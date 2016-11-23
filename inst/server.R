@@ -126,8 +126,8 @@ shinyServer(function(input, output, session) {
   observe({
     active_chart_id <- input$active_chart_id
     if(active_chart_id != ''){
-      updateAceEditor(session, 'code', value=isolate(input_queries[[active_chart_id]]))
-      updateSelectInput(session, 'selected_db', label = NULL, choices = names(db_list), selected = input_dbs[[active_chart_id]])
+      shinyAce::updateAceEditor(session, 'code', value=isolate(input_queries[[active_chart_id]]))
+      shiny::updateSelectInput(session, 'selected_db', label = NULL, choices = names(db_list), selected = input_dbs[[active_chart_id]])
     }
   })
   
@@ -147,7 +147,7 @@ shinyServer(function(input, output, session) {
                                 , icon('pencil-square-o'),'Query')
     
     #Chart
-    output[[chart_id]] <- renderGoogleChart({ 
+    output[[chart_id]] <- shinyGoogleCharts::renderGoogleChart({ 
       googleChartObject(
         data = input_data[[chart_id]], 
         type = input[[charteditor_id]]$chartType, 

@@ -10,7 +10,8 @@ shinyUI(fluidPage(
       import //tinymce.cachefly.net/4.0/tinymce.min.js 
       ========================================================= -->'),
       #tags$head(tags$script(src = "//tinymce.cachefly.net/4.0/tinymce.min.js")),
-      tags$head(tags$script(src = "//cdn.tinymce.com/4/tinymce.min.js")),
+      #tags$head(tags$script(src = "//cdn.tinymce.com/4/tinymce.min.js")),
+      includeScript(str_c(sb_dir, 'tinymce/tinymce.min.js')),
       tags$head(HTML("<script>tinymce.init({ selector:'textarea' });</script>")),
   
   HTML('<!-- =========================================================       
@@ -21,11 +22,18 @@ shinyUI(fluidPage(
   HTML('<!-- =========================================================       
       source www/shiny-gridster-bindings.js
       ========================================================= -->'),  
-      includeScript(str_c(sb_dir, 'www/shiny-gridster-bindings.js')), 
-  
+      includeScript(str_c(sb_dir, 'www/shiny-gridster-bindings.js')),   
+      includeScript(str_c(sb_dir, 'www/jquery.draggable.js')), 
+      includeScript(str_c(sb_dir, 'www/jquery.gridster.js')),    
+      
+      
+
   HTML('<!-- =========================================================       
       source www/json2.js
       ========================================================= -->'),  
+      #includeScript(str_c(sb_dir, 'www/json2.js')),
+      #includeScript(str_c(sb_dir, 'https://raw.githubusercontent.com/douglascrockford/JSON-js/master/json2.js')),
+      #wget https://raw.githubusercontent.com/douglascrockford/JSON-js/master/json2.js    
       includeScript(str_c(sb_dir, 'www/json2.js')),
   
 HTML('<!-- =========================================================       
@@ -36,7 +44,7 @@ HTML('<!-- =========================================================
   HTML('<!-- =========================================================       
       import //www.google.com/jsapi
       ========================================================= -->'),
-    tags$head(tags$script(src = "//www.google.com/jsapi")),
+      tags$head(tags$script(src = "//www.google.com/jsapi")),
   
   HTML('<!-- =========================================================       
       source www/googleChart_init.js
@@ -154,7 +162,7 @@ HTML('<!-- =========================================================
       ),
     div(class = 'modal-body',
           fluidRow(
-            column(6, aceEditor("code", 
+            column(6, shinyAce::aceEditor("code", 
                                 mode="sql", 
                                 height = "300px",
                                 value=''
