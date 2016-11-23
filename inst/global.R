@@ -26,6 +26,7 @@ db_list <- dbListInit()
 
 #Shinybuilder directory
 sb_dir <- system.file('', package = 'ShinyBuilder')
+sb_dir <- '/home/rstudio/ShinyApps/ShinyBuilder/inst/'
 
 #Available dashboards
 available_dashboards <- str_replace(list.files(path = file.path(sb_dir,'dashboards')), '.RData', '')

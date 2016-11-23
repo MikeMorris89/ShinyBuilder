@@ -2,16 +2,46 @@
 # https://github.com/iheartradio/ShinyBuilder
 # Licensed under the MIT License (MIT)
 
+#shinyUI(fluidPage(theme = "bootstrap.css",
 shinyUI(fluidPage(
-  
   #Includes
-   tags$head(tags$script(src = "http://tinymce.cachefly.net/4.0/tinymce.min.js")),
-   tags$head(tags$script(src = 'shinyMCE/shiny-tinymce-bindings.js')),
-   includeScript(str_c(sb_dir, 'www/shiny-gridster-bindings.js')), 
-   includeScript(str_c(sb_dir, 'www/json2.js')),
-   tags$head(tags$script(src = 'https://www.gstatic.com/charts/loader.js')),
-   tags$head(tags$script(src = "http://www.google.com/jsapi")),
-   includeScript(str_c(sb_dir, 'www/googleChart_init.js')),
+  
+  HTML('<!-- =========================================================       
+      import //tinymce.cachefly.net/4.0/tinymce.min.js 
+      ========================================================= -->'),
+      #tags$head(tags$script(src = "//tinymce.cachefly.net/4.0/tinymce.min.js")),
+      tags$head(tags$script(src = "//cdn.tinymce.com/4/tinymce.min.js")),
+      tags$head(HTML("<script>tinymce.init({ selector:'textarea' });</script>")),
+  
+  HTML('<!-- =========================================================       
+      source shinyMCE/shiny-tinymce-bindings.js
+      ========================================================= -->'),  
+      includeScript(str_c(sb_dir,  'shinyMCE/shiny-tinymce-bindings.js')),
+  
+  HTML('<!-- =========================================================       
+      source www/shiny-gridster-bindings.js
+      ========================================================= -->'),  
+      includeScript(str_c(sb_dir, 'www/shiny-gridster-bindings.js')), 
+  
+  HTML('<!-- =========================================================       
+      source www/json2.js
+      ========================================================= -->'),  
+      includeScript(str_c(sb_dir, 'www/json2.js')),
+  
+HTML('<!-- =========================================================       
+      import https://www.gstatic.com/charts/loader.js
+      ========================================================= -->'),
+      tags$head(tags$script(src = 'https://www.gstatic.com/charts/loader.js')),
+  
+  HTML('<!-- =========================================================       
+      import //www.google.com/jsapi
+      ========================================================= -->'),
+    tags$head(tags$script(src = "//www.google.com/jsapi")),
+  
+  HTML('<!-- =========================================================       
+      source www/googleChart_init.js
+      ========================================================= -->'),
+      includeScript(str_c(sb_dir, 'www/googleChart_init.js')),
   
    #includeScript(str_c(sb_dir, "www/tinymce.min.js")),
    # includeScript(str_c(sb_dir, 'www/shiny-tinymce-bindings.js')),
@@ -21,12 +51,14 @@ shinyUI(fluidPage(
    # includeScript(str_c(sb_dir, 'www/googleChart_init.js')),
   #Navbar
   div(class="navbar navbar-static-top navbar", 
-      div(class = 'navbar-inner',
-        span(class = 'brand pull-left', list(img(src = './mm.png', width="50", height="40"), 'Shiny Builder')),
+      div(class = 'navbar-header',
+        a(class = 'navbar-brand pull-left',
+          span(list(img(src = './mm.png', width="50", height="40"), 'Shiny Builder'))
+          ),
         column(3, selectInput('sel_dashboard', NULL, choices = available_dashboards)),
         #File
         withTags(
-          ul(class = "nav",
+          ul(class = "navbar-nav",
              li(class = "dropdown",
                 a(class="dropdown-toggle", "data-toggle" = "dropdown", 'File', b(class = "caret")),
                 ul(class = "dropdown-menu",
@@ -41,7 +73,7 @@ shinyUI(fluidPage(
 
           #Edit
           withTags(
-            ul(class = "nav",
+            ul(class = "navbar-nav",
              li(class = "dropdown",
                 a(class="dropdown-toggle", "data-toggle" = "dropdown", 'Edit', b(class = "caret")),
                 ul(class = "dropdown-menu",
@@ -61,7 +93,9 @@ shinyUI(fluidPage(
   hr(), 
   
   #'Delete' modal
-  div(id = 'delete_modal', class = 'modal hide',
+  div(id = 'delete_modal', class = 'modal',
+      div(class="modal-dialog",
+      div(class="modal-content",
       div(class = 'modal-header',
           tags$div(class = 'button', class = 'close', 'data-dismiss' = 'modal', 'aria-hidden'='true', 'x'),
           h3('Confirm Deletion')),
@@ -70,10 +104,14 @@ shinyUI(fluidPage(
       div(class = 'modal-footer',
           HTML('<button type="button" data-dismiss="modal" class="btn">Cancel</button>
                <button type="button" data-dismiss="modal" class="btn btn-primary action-button" id="delete_dash_btn">Delete Dashboard</button>')) 
+      )
+  )
   ),
   
   #'New Dashboard' Modal
-  div(id = 'new_dash_modal', class = 'modal hide', 
+  div(id = 'new_dash_modal', class = 'modal', 
+      div(class="modal-dialog",
+      div(class="modal-content",
       div(class = 'modal-header', tags$div(class = 'button', class = 'close', 'data-dismiss' = 'modal', 'aria-hidden'='true', 'x'), h3('New Dashboard')),
       div(class = 'modal-body', 
           p('Enter a new dashboard title:'), 
@@ -83,10 +121,14 @@ shinyUI(fluidPage(
           HTML('<button type="button" data-dismiss="modal" class="btn">Close</button>
                   <button type="button" data-dismiss="modal" class="btn btn-primary action-button" id="new_dash_btn">Create Dashboard</button>')
       )
+      )
+  )
   ),
 
   #'Save As' Modal
-  div(id = 'save_as_modal', class = 'modal hide', 
+  div(id = 'save_as_modal', class = 'modal', 
+      div(class="modal-dialog",
+          div(class="modal-content",
       div(class = 'modal-header', tags$div(class = 'button', class = 'close', 'data-dismiss' = 'modal', 'aria-hidden'='true', 'x'), h3('Save As')),
       div(class = 'modal-body', 
           p('Enter a new dashboard title:'), 
@@ -96,12 +138,17 @@ shinyUI(fluidPage(
           HTML('<button type="button" data-dismiss="modal" class="btn">Close</button>
                   <button type="button" data-dismiss="modal" class="btn btn-primary action-button" id="save_as_dash_btn">Save Dashboard</button>')
       )
+          )
+      )
+      
   ),
           
   
   #Query Editor Modal
-  div(id = 'full-width', class = 'modal container hide', style = 'width: 100%; margin: auto; left: 0', tabindex = '-1',
-      div(class = 'modal-header',
+  div(id = 'full-width', class = 'modal container', style = 'width: 100%; margin: auto; left: 0', tabindex = '-1',
+      div(class="modal-dialog",
+          div(class="modal-content",
+          div(class = 'modal-header',
           HTML('<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>'),
           fluidRow(column(6,h3('Edit Query')), column(5,h3('Table Preview')))
       ),
@@ -123,8 +170,10 @@ shinyUI(fluidPage(
            HTML('<button type="button" data-dismiss="modal" class="btn">Cancel</button>
                   <button type="button" data-dismiss="modal" class="btn btn-primary action-button" id="save_changes">Save Query</button>')
       )
+          )
+    )
   ),
-  p('powered by iHR DataScience', align = 'left'),    
+  p('powered by iHR DataScience, bootstrap update by Mike Morris', align = 'left'),    
   
   #Main Stylesheet
   includeCSS(str_c(sb_dir, '/www/main.css'))

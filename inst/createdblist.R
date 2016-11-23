@@ -1,12 +1,14 @@
+#shinypackageurl <- "https://cran.r-project.org/src/contrib/Archive/shiny/shiny_0.10.0.tar.gz"
+#install.packages(packageurl, repos=NULL, type="source")
+
 version 
 options(verbose = T)
 options(shiny.trace=TRUE)
-remove.packages('shiny')
-remove.packages('devtools')
+#remove.packages('shiny')
+#remove.packages('devtools')
 install.packages('devtools',dep=T)
-install.packages('shiny',dep=T,)
-packageurl <- "https://cran.r-project.org/src/contrib/Archive/shiny/shiny_0.13.1.tar.gz"
-install.packages(packageurl, repos=NULL, type="source")
+install.packages('tinymce',dep=T)
+install.packages('shiny',dep=T)
 install.packages('stringr',dep=T)
 install.packages('googleVis',dep=T)
 install.packages('shinyGoogleCharts',dep=T)
