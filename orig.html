@@ -2,45 +2,64 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>  <script type="application/shiny-singletons">f1e3305e76309a9c80e57fa2666b6aee4afe8d95,b0b21f3c0624b514451664d6011fdcc565678cd6</script>  <script type="application/html-dependencies">json2[2014.02.04];jquery[1.12.4];babel-polyfill[6.7.2];shiny[0.14.2];selectize[0.11.2];font-awesome[4.6.3];datatables[1.10.5];datatables-bootstrap[1.10.5];bootstrap[3.3.7]</script><script src="shared/json2-min.js"></script>
-<script src="shared/jquery.min.js"></script>
-<script src="shared/babel-polyfill.min.js"></script>
+<base href="_w_ba2abc56/" />
+    <script type="text/javascript">
+(function() {
+  // http://stackoverflow.com/questions/10964966/detect-ie-version-in-javascript
+  function isIE () {
+    var myNav = navigator.userAgent.toLowerCase();
+    return (myNav.indexOf('msie') != -1) ? parseInt(myNav.split('msie')[1]) : false;
+  }
+  
+  if (isIE() === 8 || isIE() === 9){
+    // Set an absolute base href.
+    baseURL = document.URL;
+    baseURL = baseURL.substring(0, baseURL.lastIndexOf('/'));
+    document.getElementsByTagName('base')[0].setAttribute('href', baseURL + '/_w_ba2abc56/');
+  }
+})();
+</script>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <script type="application/shiny-singletons">7196694b46f8e7c34171939351e3a70cdd3ccf40,f1e3305e76309a9c80e57fa2666b6aee4afe8d95,dc1a46f08d4ae5b4e7ff8316732eb9662e330cee</script>
+  <script type="application/html-dependencies">jquery[1.11.0];shiny[0.10.0];selectize[0.8.5];datatables[1.9.4];datatables-bootstrap[1.9.4];bootstrap[2.3.2];bootstrap-responsive[2.3.2]</script>
+<script src="shared/jquery.js"></script>
 <link href="shared/shiny.css" rel="stylesheet" />
-<script src="shared/shiny.min.js"></script>
-<link href="shared/selectize/css/selectize.bootstrap3.css" rel="stylesheet" />
+<script src="shared/shiny.js"></script>
+<link href="shared/selectize/css/selectize.bootstrap2.css" rel="stylesheet" />
 <!--[if lt IE 9]>
 <script src="shared/selectize/js/es5-shim.min.js"></script>
 <![endif]-->
 <script src="shared/selectize/js/selectize.min.js"></script>
-<link href="shared/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 <script src="shared/datatables/js/jquery.dataTables.min.js"></script>
-<link href="shared/datatables/css/dataTables.bootstrap.css" rel="stylesheet" />
-<link href="shared/datatables/css/dataTables.extra.css" rel="stylesheet" />
-<script src="shared/datatables/js/dataTables.bootstrap.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="shared/datatables/css/DT_bootstrap.css" rel="stylesheet" />
+<script src="shared/datatables/js/DT_bootstrap.js"></script>
 <link href="shared/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 <script src="shared/bootstrap/js/bootstrap.min.js"></script>
-<script src="shared/bootstrap/shim/html5shiv.min.js"></script>
-<script src="shared/bootstrap/shim/respond.min.js"></script>  <script src="http://tinymce.cachefly.net/4.0/tinymce.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="shared/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
+  <script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
   <script src="shinyMCE/shiny-tinymce-bindings.js"></script>
-  <script src="https://www.gstatic.com/charts/loader.js"></script>
-  <script src="http://www.google.com/jsapi"></script>
+  <script src="//www.google.com/jsapi"></script>
+  <link rel="stylesheet" type="text/css" href="shared/font-awesome/css/font-awesome.min.css"/>
   <script src="gridster/jquery.gridster.min.js"></script>
   <link rel="stylesheet" type="text/css" href="gridster/jquery.gridster.min.css"/>
   <script src="gridster/shiny-gridster-init.js"></script>
   <link rel="stylesheet" type="text/css" href="gridster/shiny-gridster.css"/>
   
-  <script src="shinyAce/ace/ace.js"></script>
-  <script src="shinyAce/ace/ext-language_tools.js"></script>
   <script src="shinyAce/shinyAce.js"></script>
-  <link rel="stylesheet" type="text/css" href="shinyAce/shinyAce.css"/>
+  <script src="shinyAce/ace/ace.js"></script>
+<script src="__assets__/sockjs-0.3.min.js"></script>
+<script src="__assets__/rstudio-connect.js"></script>
+<link rel="stylesheet" type="text/css" href="__assets__/rstudio-connect.css"/>
 
 </head>
-
 <body>
-  <div class="container-fluid">
-    <script>var first_load = 1;
+<script type="text/javascript" src="/__static__/components/iframe-resizer/js/iframeResizer.contentWindow.min.js"></script>
+<script type="text/javascript" src="/__static__/frontend/scripts/shinyapps.js"></script>
+<script type="text/javascript" src="/__static__/frontend/scripts/shinyapps.frame.content.js"></script>
+
+<div class="container-fluid">
+  <script>var first_load = 1;
 
 $(function() {
   
@@ -190,7 +209,7 @@ Shiny.inputBindings.register(shinyGridsterBinding);
 
 
 });</script>
-    <script>/*
+  <script>/*
     json2.js
     2014-02-04
 
@@ -679,7 +698,7 @@ if (typeof JSON !== 'object') {
         };
     }
 }());</script>
-    <script>$(document).ready(function () {
+  <script>$(document).ready(function () {
 
 //Google Chart Output Binding
 var googleChartOutputBinding = new Shiny.OutputBinding();
@@ -741,161 +760,149 @@ $.extend(chartEditorInputBinding, {
 Shiny.inputBindings.register(chartEditorInputBinding);   
     
 });</script>
-    <div class="navbar navbar-static-top navbar">
-      <div class="navbar-inner">
-        <span class="brand pull-left">
-          <img src="./mm.png" width="50" height="40"/>
-          Shiny Builder
-        </span>
-        <div class="col-sm-3">
-          <div class="form-group shiny-input-container">
-            <div>
-              <select id="sel_dashboard"><option value="Sample Dashboard" selected>Sample Dashboard</option></select>
-              <script type="application/json" data-for="sel_dashboard" data-nonempty="">{}</script>
-            </div>
-          </div>
-        </div>
-        <ul class="nav">
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown">
-              File
-              <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <li>
-                <a id="save_dash_btn" class="action-button shiny-input-bound">
-                  <i class="fa fa-floppy-o"></i>
-                  Save
-                </a>
-              </li>
-              <li class="divider"></li>
-              <li>
-                <a id="save_as_modal_btn" data-toggle="modal" data-target="#save_as_modal">
-                  <i class="fa fa-floppy-o"></i>
-                  Save As
-                </a>
-              </li>
-              <li>
-                <a id="new_dash_modal_btn" data-toggle="modal" data-target="#new_dash_modal">
-                  <i class="fa fa-dashboard"></i>
-                  New Dashboard
-                </a>
-              </li>
-              <li>
-                <a id="delete_dash_modal_btn" class="action-button" data-toggle="modal" data-target="#delete_modal">
-                  <i class="fa fa-trash-o"></i>
-                  Delete Dashboard
-                </a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-        <ul class="nav">
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown">
-              Edit
-              <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <li>
-                <a id="addChart" class="action-button shiny-input-bound">
-                  <i class="fa fa-bar-chart-o"></i>
-                  Add Chart
-                </a>
-              </li>
-              <li>
-                <a id="addText" class="action-button shiny-input-bound">
-                  <i class="fa fa-bars"></i>
-                  Add Text Area
-                </a>
-              </li>
-            </ul>
-          </li>
-        </ul>
+  <div class="navbar navbar-static-top navbar">
+    <div class="navbar-inner">
+      <span class="brand pull-left">
+        <img src="./iheartradio.png" width="40" height="40"/>
+        Shiny Builder
+      </span>
+      <div class="span3">
+        <select id="sel_dashboard"><option value="Sample Dashboard" selected>Sample Dashboard</option></select>
+        <script type="application/json" data-for="sel_dashboard" data-nonempty="">{}</script>
       </div>
+      <ul class="nav">
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown">
+            File
+            <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a id="save_dash_btn" class="action-button shiny-input-bound">
+                <i class="fa fa-floppy-o"></i>
+                Save
+              </a>
+            </li>
+            <li class="divider"></li>
+            <li>
+              <a id="save_as_modal_btn" data-toggle="modal" data-target="#save_as_modal">
+                <i class="fa fa-floppy-o"></i>
+                Save As
+              </a>
+            </li>
+            <li>
+              <a id="new_dash_modal_btn" data-toggle="modal" data-target="#new_dash_modal">
+                <i class="fa fa-dashboard"></i>
+                New Dashboard
+              </a>
+            </li>
+            <li>
+              <a id="delete_dash_modal_btn" class="action-button" data-toggle="modal" data-target="#delete_modal">
+                <i class="fa fa-trash-o"></i>
+                Delete Dashboard
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav">
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown">
+            Edit
+            <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a id="addChart" class="action-button shiny-input-bound">
+                <i class="fa fa-bar-chart-o"></i>
+                Add Chart
+              </a>
+            </li>
+            <li>
+              <a id="addText" class="action-button shiny-input-bound">
+                <i class="fa fa-bars"></i>
+                Add Text Area
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </div>
-    <br/>
-    <div class="row">
-      <div class="gridster">
-        <ul data-marginx="10" data-marginy="10" data-width="100" data-height="50" id="gridster_frame"></ul>
-      </div>
+  </div>
+  <br/>
+  <div class="row-fluid">
+    <div class="gridster">
+      <ul data-marginx="10" data-marginy="10" data-width="100" data-height="50" id="gridster_frame"></ul>
     </div>
-    <hr/>
-    <div id="delete_modal" class="modal hide">
-      <div class="modal-header">
-        <div aria-hidden="true" class="button close" data-dismiss="modal">x</div>
-        <h3>Confirm Deletion</h3>
-      </div>
-      <div class="modal-body">
-        <p>Are you sure you want to delete this dashboard?  This operation cannot be undone.</p>
-      </div>
-      <div class="modal-footer"><button type="button" data-dismiss="modal" class="btn">Cancel</button>
+  </div>
+  <hr/>
+  <div id="delete_modal" class="modal hide">
+    <div class="modal-header">
+      <div aria-hidden="true" class="button close" data-dismiss="modal">x</div>
+      <h3>Confirm Deletion</h3>
+    </div>
+    <div class="modal-body">
+      <p>Are you sure you want to delete this dashboard?  This operation cannot be undone.</p>
+    </div>
+    <div class="modal-footer"><button type="button" data-dismiss="modal" class="btn">Cancel</button>
                <button type="button" data-dismiss="modal" class="btn btn-primary action-button" id="delete_dash_btn">Delete Dashboard</button></div>
+  </div>
+  <div id="new_dash_modal" class="modal hide">
+    <div class="modal-header">
+      <div aria-hidden="true" class="button close" data-dismiss="modal">x</div>
+      <h3>New Dashboard</h3>
     </div>
-    <div id="new_dash_modal" class="modal hide">
-      <div class="modal-header">
-        <div aria-hidden="true" class="button close" data-dismiss="modal">x</div>
-        <h3>New Dashboard</h3>
-      </div>
-      <div class="modal-body">
-        <p>Enter a new dashboard title:</p>
-        <div class="form-group shiny-input-container">
-          <input id="new_dash_file_name" type="text" class="form-control" value=""/>
-        </div>
-      </div>
-      <div class="modal-footer"><button type="button" data-dismiss="modal" class="btn">Close</button>
+    <div class="modal-body">
+      <p>Enter a new dashboard title:</p>
+      <input id="new_dash_file_name" type="text" value=""/>
+    </div>
+    <div class="modal-footer"><button type="button" data-dismiss="modal" class="btn">Close</button>
                   <button type="button" data-dismiss="modal" class="btn btn-primary action-button" id="new_dash_btn">Create Dashboard</button></div>
+  </div>
+  <div id="save_as_modal" class="modal hide">
+    <div class="modal-header">
+      <div aria-hidden="true" class="button close" data-dismiss="modal">x</div>
+      <h3>Save As</h3>
     </div>
-    <div id="save_as_modal" class="modal hide">
-      <div class="modal-header">
-        <div aria-hidden="true" class="button close" data-dismiss="modal">x</div>
-        <h3>Save As</h3>
-      </div>
-      <div class="modal-body">
-        <p>Enter a new dashboard title:</p>
-        <div class="form-group shiny-input-container">
-          <input id="save_as_file_name" type="text" class="form-control" value=""/>
-        </div>
-      </div>
-      <div class="modal-footer"><button type="button" data-dismiss="modal" class="btn">Close</button>
+    <div class="modal-body">
+      <p>Enter a new dashboard title:</p>
+      <input id="save_as_file_name" type="text" value=""/>
+    </div>
+    <div class="modal-footer"><button type="button" data-dismiss="modal" class="btn">Close</button>
                   <button type="button" data-dismiss="modal" class="btn btn-primary action-button" id="save_as_dash_btn">Save Dashboard</button></div>
+  </div>
+  <div id="full-width" class="modal container hide" style="width: 100%; margin: auto; left: 0" tabindex="-1">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+      <div class="row-fluid">
+        <div class="span6">
+          <h3>Edit Query</h3>
+        </div>
+        <div class="span5">
+          <h3>Table Preview</h3>
+        </div>
+      </div>
     </div>
-    <div id="full-width" class="modal container hide" style="width: 100%; margin: auto; left: 0" tabindex="-1">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-        <div class="row">
-          <div class="col-sm-6">
-            <h3>Edit Query</h3>
-          </div>
-          <div class="col-sm-5">
-            <h3>Table Preview</h3>
-          </div>
+    <div class="modal-body">
+      <div class="row-fluid">
+        <div class="span6">
+          <pre id="code" class="shiny-ace" style="height: 300px"></pre>
+          <script type="text/javascript">var editor = ace.edit('code');editor.getSession().setMode('ace/mode/sql');editor.setValue('', -1);document.getElementById('code').style.fontSize='12px'; $('#code').data('aceEditor',editor);</script>
+          <button class="btn btn-primary action-button shiny-bound-input" id="update_preview">Update Preview</button>
+          <select id="selected_db"><option value="SQLite" selected>SQLite</option></select>
+          <script type="application/json" data-for="selected_db" data-nonempty="">{}</script>
+          <input id="active_chart_id" type="text" value="" class="shiny-bound-input" style="visibility: hidden; z-index: -1"/>
+        </div>
+        <div class="span6">
+          <div id="output_tbl" class="shiny-datatable-output"></div>
         </div>
       </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-sm-6">
-            <pre id="code" class="shiny-ace" style="height: 300px"></pre>
-            <script type="text/javascript">var editor__code = ace.edit('code');editor__code.getSession().setMode('ace/mode/sql');editor__code.setValue('', -1);document.getElementById('code').style.fontSize='12px'; $('#code').data('debounce',1000);$('#code').data('aceEditor',editor__code);</script>
-            <button class="btn btn-primary action-button shiny-bound-input" id="update_preview">Update Preview</button>
-            <div class="form-group shiny-input-container">
-              <div>
-                <select id="selected_db"><option value="SQLite" selected>SQLite</option></select>
-                <script type="application/json" data-for="selected_db" data-nonempty="">{}</script>
-              </div>
-            </div>
-            <input id="active_chart_id" type="text" value="" class="shiny-bound-input" style="visibility: hidden; z-index: -1"/>
-          </div>
-          <div class="col-sm-6">
-            <div id="output_tbl" class="shiny-datatable-output"></div>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer"><button type="button" data-dismiss="modal" class="btn">Cancel</button>
+    </div>
+    <div class="modal-footer"><button type="button" data-dismiss="modal" class="btn">Cancel</button>
                   <button type="button" data-dismiss="modal" class="btn btn-primary action-button" id="save_changes">Save Query</button></div>
-    </div>
-    <p align="left">powered by iHR DataScience</p>
-    <style type="text/css">.modal-dialog {
+  </div>
+  <p align="left">powered by iHR DataScience</p>
+  <style type="text/css">.modal-dialog {
     z-index:99;
 }
 
@@ -1025,7 +1032,6 @@ body {
     height: 100%;
 }*/
 </style>
-  </div>
+</div>
 </body>
-
 </html>
