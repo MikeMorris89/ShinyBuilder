@@ -33,24 +33,24 @@ googleChartEditor <- function(id, target, type = 'Table', options = '{}', label 
   
   #ChartEditor Button  
   HTML(paste0("<div class = 'chartEditor btn' style='display:inline;' onclick='openChartEditor(\"", target, 
-     "\");' data-target = '", target, "' options = '", options,
-     "' chartType = '", type,"' id = '", id,"'>",label,"</div> ")),
-
+              "\");' data-target = '", target, "' options = '", options,
+              "' chartType = '", type,"' id = '", id,"'>",label,"</div> ")),
+  
   singleton(tags$script(
-       "var openChartEditor = function(chartId){
-        var wrapper = $('#'+chartId).data('chart');
-        var editor = new google.visualization.ChartEditor();
-        google.visualization.events.addListener(editor, 'ok',
-             function() {
-              var new_wrapper = editor.getChartWrapper();
-              new_wrapper.draw($('#'+chartId));
-              $('#'+chartId).data('chart', new_wrapper);
-              $('#'+chartId+'_editor').attr('chartType', new_wrapper.getChartType());
-              $('#'+chartId+'_editor').attr('options', JSON.stringify(new_wrapper.getOptions()));
-              $('#'+chartId+'_editor').trigger('change.chartEditorInputBinding');
-            }
-        );
-        editor.openDialog(wrapper);
-        };"))
+    "var openChartEditor = function(chartId){
+    var wrapper = $('#'+chartId).data('chart');
+    var editor = new google.visualization.ChartEditor();
+    google.visualization.events.addListener(editor, 'ok',
+    function() {
+    var new_wrapper = editor.getChartWrapper();
+    new_wrapper.draw($('#'+chartId));
+    $('#'+chartId).data('chart', new_wrapper);
+    $('#'+chartId+'_editor').attr('chartType', new_wrapper.getChartType());
+    $('#'+chartId+'_editor').attr('options', JSON.stringify(new_wrapper.getOptions()));
+    $('#'+chartId+'_editor').trigger('change.chartEditorInputBinding');
+    }
+    );
+    editor.openDialog(wrapper);
+};"))
             
 )}
