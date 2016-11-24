@@ -2,6 +2,37 @@
 # https://github.com/iheartradio/ShinyBuilder
 # Licensed under the MIT License (MIT)
 
+# install.packages("shinyBS")
+# 
+# library("shiny")
+# library("shinyBS")
+# 
+# jsStr <- '$(document).ready(function(){
+# $("a[data-value=\'OpenModal\']").attr({
+# "href":"#", 
+# "data-toggle":"modal",
+# "data-target":"#modal1"
+# });
+# })
+# ' 
+# 
+# ui <- shinyUI(fluidPage(
+#   tags$head(tags$script(HTML(jsStr))),
+#   navbarPage("title",
+#              tabPanel("OpenModal")
+#   ),
+#   bsModal("modal1", "Example", "moda", p("This is a modal"))
+# ))
+# 
+# server <-
+#   function(input,output){ re <- eventReactive(
+#     input$go,{input$a})
+#   output$b <- renderText({ re()
+#   })
+#   }
+# 
+# shinyApp(ui = ui, server = server)
+
 shinyUI(bootstrapPage(theme = "bootstrap.css",
 #shinyUI(fluidPage(
   #Includes
@@ -67,45 +98,57 @@ HTML('<!-- =========================================================
    # includeScript(str_c(sb_dir, "www/jsapi")),
    # includeScript(str_c(sb_dir, 'www/googleChart_init.js')),
   #Navbar
-    div(class="navbar navbar-inverse navbar-fixed-top", 
-     div(class = 'container',
-      div(class = 'navbar-header',
+   div(class="container",
+    div(class="navbar navbar-default", 
+     div(class = 'container-fluid',
+      div(class = 'navbar-header'
          # a(class = 'navbar-brand pull-left',
          #   span(list(img(src = './mm.png', width="50", height="40"), 'Shiny Builder'))
          # ),
-         a('Shiny Builder',href="#")
-      )
-    ,withTags(
+         ,HTML('<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>')
+         ,a(class = 'navbar-brand',href="#",'Shiny Builder')
+        )  
+     )
+     
+    ,div(id="navbar",class="navbar-collapse collapse",
+      withTags(
       ul(class = "nav navbar-nav",
          selectInput('sel_dashboard', NULL, choices = available_dashboards)
         ,li(class = "dropdown",
-           a(class="dropdown-toggle", `data-toggle` = "dropdown", 'File',span(class="caret")),
+           a(class="dropdown-toggle", `data-toggle` = "dropdown",role="button", `aria-haspopup`="true",`aria-expanded`="false", 'File',span(class="caret")),
            ul(class = "dropdown-menu",
                li(a(id="save_dash_btn", class="action-button shiny-input-bound", icon('floppy-o'), 'Save')),
-               li(class = "divider"),
-               li(a(id="save_as_modal_btn", 'data-toggle' = "modal", 'data-target' = '#save_as_modal', icon('floppy-o'), 'Save As')),
-               li(a(id="new_dash_modal_btn", 'data-toggle' = "modal", 'data-target' = '#new_dash_modal', icon('dashboard'), 'New Dashboard')),
-               li(a(id="delete_dash_modal_btn", class = 'action-button', 'data-toggle' = "modal", 'data-target' = '#delete_modal', icon('trash-o'), 'Delete Dashboard'))
+               li(role="separator", class="divider"),
+               li(class="dropdown-header","Create New"),
+               li(a(id="save_as_modal_btn", `data-toggle` = "modal", `data-target` = '#save_as_modal', icon('floppy-o'), 'Save As')),
+               li(a(id="new_dash_modal_btn", `data-toggle` = "modal", `data-target` = '#new_dash_modal', icon('dashboard'), 'New Dashboard')),
+               li(a(id="delete_dash_modal_btn", class = 'action-button', `data-toggle` = "modal", `data-target` = '#delete_modal', icon('trash-o'), 'Delete Dashboard'))
            )
         )
-       ,li(class = "dropdown"
-         ,a(class="dropdown-toggle", `data-toggle` = "dropdown", 'Edit', span(class = "caret"))
-         ,ul(class = "dropdown-menu"
-            ,li(a(id="addChart", class="action-button shiny-input-bound", icon('bar-chart-o'), 'Add Chart'))
-            ,li(a(id="addText", class="action-button shiny-input-bound", icon('bars'), 'Add Text Area'))
-          )
+        ,li(class = "dropdown",
+            a(class="dropdown-toggle", `data-toggle` = "dropdown",role="button", `aria-haspopup`="true",`aria-expanded`="false", 'Edit',span(class="caret"))
+            ,ul(class = "dropdown-menu"
+              ,li(a(id="addChart", class="action-button shiny-input-bound", icon('bar-chart-o'), 'Add Chart'))
+              ,li(a(id="addText", class="action-button shiny-input-bound", icon('bars'), 'Add Text Area'))
+            )
+        )
        )
       )
-     )
     )
-   ),
+   )
+  ),
   # navbarPage("ShinyBuilder"
   #            ,tabPanel(selectInput('sel_dashboard', NULL, choices = available_dashboards))
   #            ,navbarMenu("File"
   #                       ,tabPanel(actionButton(inputId = 'save_dash_btn',label = "Save", icon('floppy-o')))
-  #                       ,tabPanel(actionButton(inputId = 'save_dash_btn',label = "Save As", icon('floppy-o'), 'data-toggle' = "modal", 'data-target' = '#save_as_modal'))
-  #                       ,tabPanel(actionButton(inputId = 'new_dash_modal_btn',label = "New Dashboard", icon('dashboard'), 'data-toggle' = "modal", 'data-target' = '#new_dash_modal'))
-  #                       ,tabPanel(actionButton(inputId = 'delete_dash_modal_btn',label = "Delete Dashboard",icon('trash-o'), 'data-toggle' = "modal", 'data-target' = '#delete_modal'))
+  #                       ,tabPanel(actionButton(inputId = 'save_dash_btn',label = "Save As", icon('floppy-o'), `data-toggle` = "modal", `data-target` = '#save_as_modal'))
+  #                       ,tabPanel(actionButton(inputId = 'new_dash_modal_btn',label = "New Dashboard", icon('dashboard'), `data-toggle` = "modal", `data-target` = '#new_dash_modal'))
+  #                       ,tabPanel(actionButton(inputId = 'delete_dash_modal_btn',label = "Delete Dashboard",icon('trash-o'), `data-toggle` = "modal", `data-target` = '#delete_modal'))
   #            )
   #            ,navbarMenu("Edit"
   #                        ,tabPanel(actionButton(inputId = 'save_dash_btn',label = "Save",icon('floppy-o')))
